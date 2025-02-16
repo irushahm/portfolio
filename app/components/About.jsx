@@ -40,7 +40,7 @@ const About = ({ isDarkMode }) => {
                     transition={{ duration: 0.6, delay: 0.8 }}
                     className='flex-1'>
                     <p className='mb-10 max-w-2xl font-ovo'>
-                        Detail-oriented Infrastructure Engineer with over 3 years of hands-on experience in designing, implementing, and maintaining robust IT systems. Seeking to leverage expertise in system administration, network management, and cloud technologies to contribute effectively to a dynamic organization. Dedicated to optimizing infrastructure performance, ensuring scalability, and driving operational excellence in alignment with business goals
+                    Detail-oriented Infrastructure Engineer with 5+ years of experience in designing, implementing, and managing resilient IT systems. Skilled in system administration, network management, and cloud technologies, with a focus on optimizing performance, scalability, and reliability. Passionate about driving operational excellence and aligning IT infrastructure with business objectives to enhance efficiency and innovation.
                     </p>
 
                     <motion.ul

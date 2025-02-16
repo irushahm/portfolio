@@ -33,7 +33,7 @@ const Header = () => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 1 }}
                 className='max-w-2xl -mx-auto font-Ovo'>
-                Detail-oriented IT Infrastructure Engineer with over 3 years of hands-on experience in designing, implementing, and maintaining robust IT systems.
+                Detail-oriented Infrastructure Engineer with 5+ years of experience in designing, implementing, and managing resilient IT systems. Skilled in system administration, network management, and cloud technologies, with a focus on optimizing performance, scalability, and reliability.
             </motion.p>
             <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>
                 <motion.a
@@ -45,7 +45,7 @@ const Header = () => {
                 initial={{y:30, opacity: 0}}
                 whileInView={{y:0, opacity: 1}}
                 transition={{duration: 0.6, delay: 1.2}}
-                href="https://www.linkedin.com/in/ihasantha/" download className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black'>LinkedIn<Image src={assets.right_arrow_bold} alt='' className='w-4' /></motion.a>
+                target='_blank' href="https://www.linkedin.com/in/ihasantha/" download className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black'>LinkedIn<Image src={assets.right_arrow_bold} alt='' className='w-4' /></motion.a>
             </div>
         </div>
     )
