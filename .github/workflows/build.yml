@@ -1,0 +1,53 @@
+name: Deploy Irusha's Portfolio container in Azure Container App
+
+on: push
+
+env:
+  AZURE_CONTAINER_REGISTRY: irusha.azurecr.io
+  CONTAINER_APP_NAME: myportfolio
+  CONTAINER: portfolio
+  RESOURCE_GROUP: rg-irusha
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      
+      - name: Login to ACR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.AZURE_CONTAINER_REGISTRY }}
+          username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+          password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+    
+      - name: Set short SHA # For Versioning
+        id: vars
+        run: echo "SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
+    
+      - name: Build and push container image to ACR
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ${{ env.AZURE_CONTAINER_REGISTRY }}/${{ env.CONTAINER }}:${{ env.SHORT_SHA }}
+          file: ./Dockerfile
+      
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: |
+            {
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}",
+              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+            }
+
+      - name: Deploy to Azure Container Apps
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          imageToDeploy: ${{ env.AZURE_CONTAINER_REGISTRY }}/${{ env.CONTAINER }}:${{ env.SHORT_SHA }}
+          resourceGroup: ${{ env.RESOURCE_GROUP }}
+          containerAppName: ${{ env.CONTAINER_APP_NAME }}

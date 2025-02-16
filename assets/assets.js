@@ -135,5 +135,5 @@ export const infoList = [
 ];
 
 export const toolsData = [
-    assets.ansible, assets.aws, assets.azure, assets.docker, assets.powerbi, assets.powershell, assets.python, assets.terraform, assets.git
+    assets.ansible, assets.aws, assets.azure, assets.docker, assets.kubernetes, assets.terraform, 
 ];
